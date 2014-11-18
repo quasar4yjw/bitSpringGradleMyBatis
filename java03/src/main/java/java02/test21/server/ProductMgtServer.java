@@ -29,18 +29,6 @@ public class ProductMgtServer {
   CommandMapping commandMapping;
   
   public void init() throws Exception {
-    // MyBatis 설정 파일 경로
-    String resource = "java02/test21/server/mybatis-config.xml";
-    
-    // 설정 파일을 읽어 들일 입력 스트림 객체를 준비한다.
-    // Resources의 getResourceAsStream()을 사용하면,
-    // mybatis 설정 파일을 클래스 경로에서 찾는 스트림 객체를 리턴한다.
-    InputStream inputStream = Resources.getResourceAsStream(resource);
-    
-    // mybatis 설정 파일대로 동작할 SqlSessionFactory를 얻는다.
-    // 빌더 역할을 수행하는 객체를 통해서 얻는다.
-    SqlSessionFactory sqlSessionFactory = 
-        new SqlSessionFactoryBuilder().build(inputStream);
     
     scanner = new Scanner(System.in);
     //commandMap = new HashMap<>();
