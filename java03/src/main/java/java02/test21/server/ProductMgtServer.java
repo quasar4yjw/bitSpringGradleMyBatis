@@ -6,8 +6,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
 import java.util.Scanner;
-
-import java02.test21.server.CommandMapping.CommandInfo;
+import java02.test21.server.command.CommandMapping;
+import java02.test21.server.command.CommandMapping.CommandInfo;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactory;
