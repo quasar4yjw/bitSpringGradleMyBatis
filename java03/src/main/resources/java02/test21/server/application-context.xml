@@ -20,7 +20,7 @@
 		<property name="password" value="study" />
 	</bean>
 
-	<!-- <context:property-placeholder location="jdbc.properties"/> -->
+	<!-- ? <context:property-placeholder location="jdbc.properties"/> -->
 
 
 	<!-- SqlSessionFactory 준비 -->
