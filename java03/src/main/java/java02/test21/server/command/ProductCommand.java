@@ -3,19 +3,21 @@ package java02.test21.server.command;
 import java.io.PrintStream;
 import java.util.Map;
 import java.util.Scanner;
-import java02.test21.server.Product;
-import java02.test21.server.ProductDao;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java02.test19.server.annotation.Component;
+import java02.test21.server.domain.Product;
+import java02.test21.server.dao.ProductDao;
 import java02.test21.server.annotation.Command;
-import java02.test21.server.annotation.Component;
 
 @Component("product")
 public class ProductCommand {
+	@Autowired
   ProductDao productDao;
   //Scanner scanner;
   
-  public void setProductDao(ProductDao productDao) {
-    this.productDao = productDao;
-  }
+
   
   /*public void setScanner(Scanner scanner) {
     this.scanner = scanner;

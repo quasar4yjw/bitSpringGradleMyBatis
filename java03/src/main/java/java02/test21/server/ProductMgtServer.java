@@ -6,11 +6,15 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
 import java.util.Scanner;
+
 import java02.test21.server.CommandMapping.CommandInfo;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Component;
 
 @SuppressWarnings({"unchecked", "rawtypes"})
 public class ProductMgtServer {
@@ -44,16 +48,16 @@ public class ProductMgtServer {
     // java02.test21.server 패키지 및 하위 패키지의 모든 클래스를 뒤진다.
     // @Component 애노테이션이 붙은 클래스를 찾는다.
     // 해당 클래스의 인스턴스를 생성하여 보관한다.
-    appCtx = new ApplicationContext("java02.test21.server");
     
-    //appCtx.addBean("scanner", scanner);
-    appCtx.addBean("sqlSessionFactory", sqlSessionFactory);
-    appCtx.injectDependency();
+    
+  	ApplicationContext appCtx = 
+				new ClassPathXmlApplicationContext(
+				new String[]{"java02/test21/server/application-context.xml"});
     
     // objPool에서 @Command 애노테이션이 붙은 메서드를 찾는다.
     // 명령어와 메서드 연결 정보를 구축한다.
     commandMapping = new CommandMapping();
-    commandMapping.prepare(appCtx.getAllBeans());
+    commandMapping.prepare(appCtx.getBeansWithAnnotation(Component.class).values());
     
     /*Reflections reflections = 
         new Reflections("java02.test21.server.command");
