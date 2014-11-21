@@ -1,10 +1,10 @@
-package java63.servlets.test02;
+package java63.servlets.test03;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
-import java63.servlets.test02.dao.ProductDao;
-import java63.servlets.test02.domain.Product;
+import java63.servlets.test03.dao.ProductDao;
+import java63.servlets.test03.domain.Product;
 
 import javax.servlet.GenericServlet;
 import javax.servlet.ServletException;
@@ -16,7 +16,7 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-@WebServlet("/test02/product/view")
+@WebServlet("/test03/product/view")
 public class ProductViewServlet extends GenericServlet{
 	private static final long serialVersionUID = 1L;
 

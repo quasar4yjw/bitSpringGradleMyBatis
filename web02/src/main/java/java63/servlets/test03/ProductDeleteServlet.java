@@ -1,9 +1,9 @@
-package java63.servlets.test02;
+package java63.servlets.test03;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
-import java63.servlets.test02.dao.ProductDao;
+import java63.servlets.test03.dao.ProductDao;
 
 import javax.servlet.GenericServlet;
 import javax.servlet.ServletException;
@@ -22,7 +22,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
  * 
  */
 
-@WebServlet("/test02/product/delete")
+@WebServlet("/test03/product/delete")
 public class ProductDeleteServlet extends GenericServlet{
 	private static final long serialVersionUID = 1L;
 
