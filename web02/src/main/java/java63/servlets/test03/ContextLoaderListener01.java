@@ -14,18 +14,32 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-/* 공통으로 사용하는 자원은 보통 ServletContext에 보관한다.
- *  
- *  ServletContext => 웹 애플리케이션 시작 시 생성됨. 종료하면 제거됨.
- *  HttpSession => 최초 요청 시 생성. 타임아웃 또는 무효화 명령시 제거됨.
- *  HttpServletRequest => 요청 때마다 생성. 응답 후 제거됨.
- *  PageContext => JSP에서 사용됨.
- *  		각 JSP 실행할 때마다 생성되고 실행 완료되면 제거됨.
+/* ServletContextListener 는
+ * 웹 애플리케이션이 시작하거나 종료하는 이벤트에 대해 작업 수행!
+ * 
+ * 컨텍스트 파라미터?
+ * => 웹 애플리케이션에서 사용할 환경 변수 정의할 때 사용.
+ * => 모든 서블릿이 사용할 수 있습니다.
+ * 
+ * 설정 방법? web.xml에 다음과 같이 설정한다.
+ * <context-param>
+ *   <param-name>키</param-name>
+ *   <param-value>값<param-value>
+ * </context-param>
+ * 
+ * 사용 방법?
+ * ServletContext의 getInitParameter(키) 호출
  * 
  */
 
 //@WebListener
-public class ContextLoaderListener implements ServletContextListener {
+public class ContextLoaderListener01 implements ServletContextListener {
+	public static ProductDao productDao;
+	
+
+	/* 웹 애플리케이션이 시작할 때 호출됨
+	 * => 서블릿이 사용할 공통 자원을 준비 
+	 */
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {
 		InputStream inputStream = null;
@@ -40,11 +54,10 @@ public class ContextLoaderListener implements ServletContextListener {
 		SqlSessionFactory sqlSessionFactory = 
 				new SqlSessionFactoryBuilder().build(inputStream);
 
-		ProductDao productDao = new ProductDao();
+		productDao = new ProductDao();
 		productDao.setSqlSessionFactory(sqlSessionFactory);
+		// TODO Auto-generated method stub
 
-		//ServletContext 보관소에 객체 저장!
-		ctx.setAttribute("productDao", productDao);
 	}
 
 	/* 웹 애플리케이션이 종료할 때 호출됨
