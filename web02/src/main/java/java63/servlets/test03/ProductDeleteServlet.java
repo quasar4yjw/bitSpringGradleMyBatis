@@ -25,33 +25,13 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 @WebServlet("/test03/product/delete")
 public class ProductDeleteServlet extends GenericServlet{
 	private static final long serialVersionUID = 1L;
-
-	SqlSessionFactory sqlSessionFactory;
-	ProductDao productDao;
-
-	public ProductDeleteServlet() {
-		String resource = "java63/servlets/test02/dao/mybatis-config.xml";
-		InputStream inputStream = null;
-		try {
-			inputStream = Resources.getResourceAsStream(resource);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		sqlSessionFactory = 
-				new SqlSessionFactoryBuilder().build(inputStream);
-
-		productDao = new ProductDao();
-		productDao.setSqlSessionFactory(sqlSessionFactory);
-	}
-
 	@Override
 	public void service(ServletRequest request, ServletResponse response)
 			throws ServletException, IOException {
 		HttpServletResponse originResponse = (HttpServletResponse)response;
 		originResponse.sendRedirect("list");
 		int no = Integer.parseInt(request.getParameter("no"));
-		productDao.delete(no);
+		AppInitServlet.productDao.delete(no);
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 

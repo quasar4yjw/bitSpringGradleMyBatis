@@ -19,27 +19,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 @WebServlet("/test03/product/list")
 public class ProductListServlet extends GenericServlet{
 	private static final long serialVersionUID = 1L;
-
 	static final int PAGE_DEFAULT_SIZE = 3;
-	SqlSessionFactory sqlSessionFactory;
-	ProductDao productDao;
-
-	public ProductListServlet() {
-		String resource = "java63/servlets/test02/dao/mybatis-config.xml";
-		InputStream inputStream = null;
-		try {
-			inputStream = Resources.getResourceAsStream(resource);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		sqlSessionFactory = 
-				new SqlSessionFactoryBuilder().build(inputStream);
-
-		productDao = new ProductDao();
-		productDao.setSqlSessionFactory(sqlSessionFactory);
-	}
-
 	@Override
 	public void service(ServletRequest request, ServletResponse response)
 			throws ServletException, IOException {
@@ -75,7 +55,7 @@ public class ProductListServlet extends GenericServlet{
 		out.println("<th>#</th><th>제품</th><th>수량</th><th>제조사</th>");
 		out.println("</tr>");
 
-		for (Product product : productDao.selectList(pageNo, pageSize)) {
+		for (Product product : AppInitServlet.productDao.selectList(pageNo, pageSize)) {
 			out.println("<tr>");
 			out.println("<td>" + product.getNo() + "</td>");
 			out.println("<td><a href='view?no=" + product.getNo() + "'>" 

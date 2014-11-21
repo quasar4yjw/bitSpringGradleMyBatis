@@ -20,31 +20,12 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 public class ProductViewServlet extends GenericServlet{
 	private static final long serialVersionUID = 1L;
 
-	SqlSessionFactory sqlSessionFactory;
-	ProductDao productDao;
-
-	public ProductViewServlet() {
-		String resource = "java63/servlets/test02/dao/mybatis-config.xml";
-		InputStream inputStream = null;
-		try {
-			inputStream = Resources.getResourceAsStream(resource);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		sqlSessionFactory = 
-				new SqlSessionFactoryBuilder().build(inputStream);
-
-		productDao = new ProductDao();
-		productDao.setSqlSessionFactory(sqlSessionFactory);
-	}
-
 	@Override
 	public void service(ServletRequest request, ServletResponse response)
 			throws ServletException, IOException {
 
 		int no = Integer.parseInt(request.getParameter("no"));
-		Product product = productDao.selectOne(no);
+		Product product = AppInitServlet.productDao.selectOne(no);
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 

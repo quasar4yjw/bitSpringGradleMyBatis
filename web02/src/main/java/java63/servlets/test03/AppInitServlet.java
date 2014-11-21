@@ -68,10 +68,10 @@ public class AppInitServlet extends GenericServlet {
 	@Override
 	public void init() throws ServletException {
 		
-		String resource = "java63/servlets/test02/dao/mybatis-config.xml";
 		InputStream inputStream = null;
 		try {
-			inputStream = Resources.getResourceAsStream(resource);
+			inputStream = Resources.getResourceAsStream(
+					this/*.getServletConfig()*/.getInitParameter("mybatisConfig"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

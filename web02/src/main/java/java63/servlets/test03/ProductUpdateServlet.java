@@ -27,25 +27,6 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 public class ProductUpdateServlet extends GenericServlet{
 	private static final long serialVersionUID = 1L;
 
-	SqlSessionFactory sqlSessionFactory;
-	ProductDao productDao;
-
-	public ProductUpdateServlet() {
-		String resource = "java63/servlets/test02/dao/mybatis-config.xml";
-		InputStream inputStream = null;
-		try {
-			inputStream = Resources.getResourceAsStream(resource);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		sqlSessionFactory = 
-				new SqlSessionFactoryBuilder().build(inputStream);
-
-		productDao = new ProductDao();
-		productDao.setSqlSessionFactory(sqlSessionFactory);
-	}
-
 	@Override
 	public void service(ServletRequest request, ServletResponse response)
 			throws ServletException, IOException {
@@ -59,7 +40,7 @@ public class ProductUpdateServlet extends GenericServlet{
 		product.setMakerNo(Integer.parseInt(request.getParameter("mkno")));
 		
 		
-		productDao.update(product);
+		AppInitServlet.productDao.update(product);
 		
 		HttpServletResponse originResponse = (HttpServletResponse)response;
 		originResponse.sendRedirect("list");
