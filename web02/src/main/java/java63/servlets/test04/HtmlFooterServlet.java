@@ -13,7 +13,7 @@ import javax.servlet.annotation.WebServlet;
  * => HTML 페이지의 권리 안내문(꼬리) 출력을 맡는다.
  */
 
-@WebServlet("/common/footer")
+//@WebServlet("/common/footer")
 public class HtmlFooterServlet extends GenericServlet{
 	private static final long serialVersionUID = 1L;
 
@@ -30,7 +30,7 @@ public class HtmlFooterServlet extends GenericServlet{
 		 * &reg; => ®
 		 * &yen; => ¥
 		 */
-		out.println("<address class='copyright'>Copyright&copy; Java63</address>");
+		out.println("<address class='copyright'>Copyright&copy; TEAM Incheon&Kimpo</address>");
 	}
 
 }

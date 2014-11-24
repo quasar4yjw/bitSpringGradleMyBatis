@@ -1,16 +1,25 @@
 @CHARSET "UTF-8";
 
 .container {
-	 width: 500px;
+	 width: 800px;
 }
+/* .container td{
+  height: 800px;
+} */
+
 
 .copyright {
 	 text-align: center;
-	 color: blue;
+	 color: royalblue;
+}
+
+.form-control{
 }
 
 
-
+.customPadding{
+	padding:5px;
+}
 
 
 

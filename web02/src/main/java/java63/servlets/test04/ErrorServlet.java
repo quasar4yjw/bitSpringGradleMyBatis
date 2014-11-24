@@ -18,7 +18,7 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-@WebServlet("/common/error")
+//@WebServlet("/common/error")
 public class ErrorServlet extends GenericServlet{
 	private static final long serialVersionUID = 1L;
 	static final int PAGE_DEFAULT_SIZE = 3;
