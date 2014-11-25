@@ -1,3 +1,5 @@
+<%@page import="java.util.HashSet"%>
+<%@page import="java.util.HashMap"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -44,6 +46,34 @@
 
 \${10 >= 11} = ${10 >= 11}<br>
 \${10 ge 11} = ${10 ge 11}<br>
+
+<h2>empty 연산자</h2>
+<p>값이 비어 있거나 null인지 여부를 검사</p>
+<%
+pageContext.setAttribute("age", null);
+pageContext.setAttribute("alias", "");
+pageContext.setAttribute("name", "홍길동");
+pageContext.setAttribute("list", new ArrayList());
+pageContext.setAttribute("set", new HashSet());
+pageContext.setAttribute("map", new HashMap());
+List list = new ArrayList();
+list.add("okoko");
+pageContext.setAttribute("list2", list);
+
+%>
+age(null) => ${empty age}<br>
+alias("") => ${empty alias}<br>
+name(값) => ${empty name}<br>
+list(size:0) => ${empty list}<br>
+list2(size:1) => ${empty list2}<br>
+set(size:0) => ${empty set}<br>
+map(size:0) => ${empty map}<br>
+
+<h2>조건 연산자</h2>
+\${10 > 15 ? "크다" : "작다" } = ${10 > 15 ? "크다" : "작다" }<br>
+
+
+
 
 </body>
 </html>
