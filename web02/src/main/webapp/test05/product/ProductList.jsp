@@ -19,10 +19,10 @@
 </tr>
 <c:forEach items="${products}" var="product" >
 <tr>
-<td>${products.no}</td>
-<td><a href='view?no=${products.no}'>${products.name}</a></td>
-<td>${products.quantity}</td>
-<td>${products.makerNo}</td>
+<td>${product.no}</td>
+<td><a href='view?no=${product.no}'>${product.name}</a></td>
+<td>${product.quantity}</td>
+<td>${product.makerNo}</td>
 </tr>
 </c:forEach>
 </table>

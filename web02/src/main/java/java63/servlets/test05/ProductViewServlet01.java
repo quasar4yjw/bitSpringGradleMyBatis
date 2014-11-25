@@ -20,7 +20,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
-@//WebServlet("/test05/product/view")
+//@WebServlet("/test05/product/view")
 public class ProductViewServlet01 extends GenericServlet{
 	private static final long serialVersionUID = 1L;
 
