@@ -46,5 +46,29 @@ ${applicationScope.member.no} => application.getAttribute("member").getNo()
     <li>ServletConfig config = ...;</li>
     <li>Exception error = ...; (오류를 처리하는 JSP인 경우에만) </li>
  </ul>
+ 
+ <h1>EL 객체 정리</h1>
+ <%-- ${객체.프로퍼티} 
+ 객체명         : 설명              : 사용예
+ pageContext     : ..                : ${pageContext.객체}
+ pageScope        pageContext.getAttribute()=> ${pageScope.객체}
+ servletContext :ServletContext     : ${pageContext.servletContext.객체}
+ applicationScope servletContext.getAttribute() => ${applicationScope.객체}
+ session        :HttpSession        : ${pageContext.session.객체}
+ sessionScope     session.getAttribute() => ${sessionScope.객체}
+ request        :ServletRequest     : ${pageContext.request.객체}
+ requestScope     request.getAttribute() => ${requestScope.객체}
+ 
+ ${객체}
+ 
+ 
+ response       :ServletResponse    
+ param          :getParameter(이름) : ${param.이름}
+ header         :getHeader(헤더명)  : ${header.헤더명}
+ cookie         :getCookies()...    : ${cookie.쿠키명}
+ initParam      :getInitParameter() :${initParam.이름}
+ 
+ --%>
+ 
 </body>
 </html>
