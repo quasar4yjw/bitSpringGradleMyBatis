@@ -9,12 +9,12 @@
 </head>
 <body>
 <div class='container'>
-<h1>제품 정보</h1>
+<h1>제품 정보(v1.0)</h1>
 
-<%
-Product product = 
-(Product)request.getAttribute("product");
-%>
+<jsp:useBean 
+scope="request"
+type="java63.servlets.test05.domain.Product"
+id="product"></jsp:useBean>
 <form class='form-horizontal' role='form' action='update' method='post'>
  <div class='form-group'>
  <label for='no' class='col-sm-2 control-label'>번호</label>
