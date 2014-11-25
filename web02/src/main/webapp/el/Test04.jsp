@@ -59,7 +59,6 @@ pageContext.setAttribute("map", new HashMap());
 List list = new ArrayList();
 list.add("okoko");
 pageContext.setAttribute("list2", list);
-
 %>
 age(null) => ${empty age}<br>
 alias("") => ${empty alias}<br>

@@ -11,61 +11,23 @@
 </head>
 <body>
 <h1>Core 태그 사용</h1>
-<h2>c:if</h2>
-<p>test 속성 값이 참이면 내용을 출력한다.</p>
-<c:set var="age" value="20" />
-<c:if test="${age == 20}">
- <button type="button">오호라 청춘일세 부러비 글작성</button>
-</c:if>
-
-<c:if test="${age == 20}" var="testResult" scope="page">
-  <button type="button">글작성</button>
-</c:if>
-조건 검사 결과: ${pageScope.testResult}<br>
-
-<h2>c:choose</h2>
-<c:set var="name" value="임꺽정"/>
-<c:choose>
-  <c:when test="${pageScope.name == '홍길동'}">
-     관리자님 환영합니다.
-  </c:when>
+<h2>c:url</h2>
+<p>URL을 만들어준다</p>
+<c:url var="myUrl" 
+value="http://localhost:8080/web02/test05/product/add">
+  <c:param name="name" value="오호라"></c:param>
+  <c:param name="qty" value="200"></c:param>
+  <c:param name="mkno" value="6"></c:param>
   
-  <c:when test="${pageScope.name == '임꺽정'}">
-     사용자님 환영합니다.
-  </c:when>
-  
-  <c:otherwise>손님 환영입니다.</c:otherwise>
-  
-</c:choose>
+</c:url>
+${pageScope.myUrl}<br>
+<a href="${pageScope.myUrl}">등록</a><br>
 
-<h2>c:forEach</h2>
-<%
-String[] names = {"홍길동", "임꺽정", "안중근", "윤봉길"};
-pageContext.setAttribute("names", names);
-%>
-<ul>
-<c:forEach items="${pageScope.names}" var="name">
-  <li>${name}</li>
-</c:forEach>
-</ul>
-
-<hr>
-
-<ul>
-<c:forEach items="${pageScope.names}" var="name" begin="1" end="2">
-  <li>${name}</li>
-</c:forEach>
-</ul>
-
-<h2>c:forTokens</h2>
-<%
-pageContext.setAttribute("params", "name=aaa&age=20&tel=111-1111");
-%>
-<ul>
-<c:forTokens items="${pageScope.params}" delims="&=" var="p">
-  <li>${p}
-</c:forTokens>
-</ul>
+<h2>c:import</h2>
+<p>지정 URL의 콘톈츠를 가져오기
+<textarea rows="10" cols="80">
+<c:import url="http://daum.net"/>
+</textarea>
 
 </body>
 </html>
