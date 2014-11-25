@@ -12,7 +12,7 @@
 <body>
 <div class='container'>
 <h1>제품 목록(by JSP v1.1)</h1>
-<p><a href='product-form.html' class='btn btn-primary'>새제품</a></p>
+<p><a href='add' class='btn btn-primary'>새제품</a></p>
 <table class='table table-hover'>
 <tr>
 <th>#</th><th>제품</th><th>수량</th><th>제조사</th>

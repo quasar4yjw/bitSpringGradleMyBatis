@@ -1,26 +1,29 @@
 package java63.servlets.test05;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 
+import java63.servlets.test05.dao.ProductDao;
+import java63.servlets.test05.domain.Product;
+
+import javax.servlet.GenericServlet;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/common/error")
-public class ErrorServlet extends HttpServlet{
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
+//@WebServlet("/common/error")
+public class ErrorServlet01 extends GenericServlet{
 	private static final long serialVersionUID = 1L;
-	
-	// 아래의 메서드는 service(ServletRequest, ServletResponse) 메서드가
-	// 호출한다.
-	// GET/POST/PUT 등 모든 방식의 요청에 대해 처리하고 싶다면
-	// 다음과 같이 service() 메서드를 재정의 하라!
-	
+	static final int PAGE_DEFAULT_SIZE = 3;
 	@Override
-	public void service(HttpServletRequest request, HttpServletResponse response)
+	public void service(ServletRequest request, ServletResponse response)
 			throws ServletException, IOException {
 		
 		response.setContentType("text/html;charset=UTF-8");

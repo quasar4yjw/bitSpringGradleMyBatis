@@ -1,15 +1,21 @@
 package java63.servlets.test05;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
+
 import java63.servlets.test05.dao.ProductDao;
 
+import javax.servlet.GenericServlet;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
@@ -19,13 +25,14 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
  * 
  */
 
-@WebServlet("/test05/product/delete")
-public class ProductDeleteServlet extends HttpServlet{
+//@WebServlet("/test05/product/delete")
+public class ProductDeleteServlet01 extends GenericServlet{
 	private static final long serialVersionUID = 1L;
 	@Override
-	public void doGet(HttpServletRequest request, HttpServletResponse response)
+	public void service(ServletRequest request, ServletResponse response)
 			throws ServletException, IOException {
-		response.sendRedirect("list");
+		HttpServletResponse originResponse = (HttpServletResponse)response;
+		originResponse.sendRedirect("list");
 		int no = Integer.parseInt(request.getParameter("no"));
 		//AppInitServlet.productDao.delete(no);
 		//ContextLoaderListener.productDao.delete(no);
@@ -45,7 +52,27 @@ public class ProductDeleteServlet extends HttpServlet{
 
 		ProductDao productDao = (ProductDao)appCtx.getBean("productDao");
 		productDao.delete(no);
-		
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+
+		out.println("<html>");
+		out.println("<head>");
+		out.println("<meta http-equiv='Refresh' content='5;url=list'>");
+		out.println("<link rel='stylesheet'");
+		out.println("			 href='../../css/bootstrap.min.css'>");
+		out.println("<link rel='stylesheet'");
+		out.println("			 href='../../css/bootstrap-theme.min.css'>");
+		out.println("<link rel='stylesheet'");
+		out.println("			 href='../../css/common.css'>");
+		out.println("</head>");
+		out.println("<body>");
+		out.println("<div class='container'>");
+		out.println("<h1>삭제 결과</h1>");
+		out.println("<p>삭제하였습니다.</p>");
+		out.println("</div>");
+
+		out.println("</body>");
+		out.println("</html>");
 
 		/* Redirect 는 클라이언트에 재요청 URL만 보낸다.
 		 * 따라서 이전에 출력한 콘텐츠는 취소한다.
